@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPlanillaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_idplanilla}"/>
+                    <h:outputText value="#{planillaController.selected.idplanilla}" title="#{bundle.ViewPlanillaTitle_idplanilla}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_afp}"/>
+                    <h:outputText value="#{planillaController.selected.afp}" title="#{bundle.ViewPlanillaTitle_afp}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_isss}"/>
+                    <h:outputText value="#{planillaController.selected.isss}" title="#{bundle.ViewPlanillaTitle_isss}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_sueldo}"/>
+                    <h:outputText value="#{planillaController.selected.sueldo}" title="#{bundle.ViewPlanillaTitle_sueldo}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_renta}"/>
+                    <h:outputText value="#{planillaController.selected.renta}" title="#{bundle.ViewPlanillaTitle_renta}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_vacacion}"/>
+                    <h:outputText value="#{planillaController.selected.vacacion}" title="#{bundle.ViewPlanillaTitle_vacacion}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_descuentos}"/>
+                    <h:outputText value="#{planillaController.selected.descuentos}" title="#{bundle.ViewPlanillaTitle_descuentos}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_horasextra}"/>
+                    <h:outputText value="#{planillaController.selected.horasextra}" title="#{bundle.ViewPlanillaTitle_horasextra}"/>
+                    <h:outputText value="#{bundle.ViewPlanillaLabel_empleadoIdempleado}"/>
+                    <h:outputText value="#{planillaController.selected.empleadoIdempleado}" title="#{bundle.ViewPlanillaTitle_empleadoIdempleado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{planillaController.destroyAndView}" value="#{bundle.ViewPlanillaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPlanillaEditLink}"/>
+                <br />
+                <h:commandLink action="#{planillaController.prepareCreate}" value="#{bundle.ViewPlanillaCreateLink}" />
+                <br />
+                <h:commandLink action="#{planillaController.prepareList}" value="#{bundle.ViewPlanillaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPlanillaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

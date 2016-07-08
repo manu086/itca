@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewHoraextraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewHoraextraLabel_idhoraextra}"/>
+                    <h:outputText value="#{horaextraController.selected.idhoraextra}" title="#{bundle.ViewHoraextraTitle_idhoraextra}"/>
+                    <h:outputText value="#{bundle.ViewHoraextraLabel_inicio}"/>
+                    <h:outputText value="#{horaextraController.selected.inicio}" title="#{bundle.ViewHoraextraTitle_inicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewHoraextraLabel_fin}"/>
+                    <h:outputText value="#{horaextraController.selected.fin}" title="#{bundle.ViewHoraextraTitle_fin}"/>
+                    <h:outputText value="#{bundle.ViewHoraextraLabel_empleadoIdempleado}"/>
+                    <h:outputText value="#{horaextraController.selected.empleadoIdempleado}" title="#{bundle.ViewHoraextraTitle_empleadoIdempleado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{horaextraController.destroyAndView}" value="#{bundle.ViewHoraextraDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewHoraextraEditLink}"/>
+                <br />
+                <h:commandLink action="#{horaextraController.prepareCreate}" value="#{bundle.ViewHoraextraCreateLink}" />
+                <br />
+                <h:commandLink action="#{horaextraController.prepareList}" value="#{bundle.ViewHoraextraShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewHoraextraIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

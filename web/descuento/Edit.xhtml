@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDescuentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDescuentoLabel_iddescuento}" for="iddescuento" />
+                    <h:inputText id="iddescuento" value="#{descuentoController.selected.iddescuento}" title="#{bundle.EditDescuentoTitle_iddescuento}" required="true" requiredMessage="#{bundle.EditDescuentoRequiredMessage_iddescuento}"/>
+                    <h:outputLabel value="#{bundle.EditDescuentoLabel_comentario}" for="comentario" />
+                    <h:inputText id="comentario" value="#{descuentoController.selected.comentario}" title="#{bundle.EditDescuentoTitle_comentario}" required="true" requiredMessage="#{bundle.EditDescuentoRequiredMessage_comentario}"/>
+                    <h:outputLabel value="#{bundle.EditDescuentoLabel_monto}" for="monto" />
+                    <h:inputText id="monto" value="#{descuentoController.selected.monto}" title="#{bundle.EditDescuentoTitle_monto}" />
+                    <h:outputLabel value="#{bundle.EditDescuentoLabel_tipodescuentoIdtipodescuento}" for="tipodescuentoIdtipodescuento" />
+                    <h:selectOneMenu id="tipodescuentoIdtipodescuento" value="#{descuentoController.selected.tipodescuentoIdtipodescuento}" title="#{bundle.EditDescuentoTitle_tipodescuentoIdtipodescuento}" required="true" requiredMessage="#{bundle.EditDescuentoRequiredMessage_tipodescuentoIdtipodescuento}">
+                        <f:selectItems value="#{tipodescuentoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDescuentoLabel_empleadoIdempleado}" for="empleadoIdempleado" />
+                    <h:selectOneMenu id="empleadoIdempleado" value="#{descuentoController.selected.empleadoIdempleado}" title="#{bundle.EditDescuentoTitle_empleadoIdempleado}" required="true" requiredMessage="#{bundle.EditDescuentoRequiredMessage_empleadoIdempleado}">
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{descuentoController.update}" value="#{bundle.EditDescuentoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDescuentoViewLink}"/>
+                <br />
+                <h:commandLink action="#{descuentoController.prepareList}" value="#{bundle.EditDescuentoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDescuentoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

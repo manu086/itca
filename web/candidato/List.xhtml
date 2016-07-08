@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCandidatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+			<h:form styleClass="jsfcrud_list_form">
+				<h:panelGroup id="messagePanel" layout="block">
+					<h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+				</h:panelGroup>
+				<h:outputText escape="false" value="#{bundle.ListCandidatoEmpty}" rendered="#{candidatoController.items.rowCount == 0}"/>
+				<h:panelGroup rendered="#{candidatoController.items.rowCount > 0}">
+					<h:outputText value="#{candidatoController.pagination.pageFirstItem + 1}..#{candidatoController.pagination.pageLastItem + 1}/#{candidatoController.pagination.itemsCount}"/>&nbsp;
+					<h:commandLink action="#{candidatoController.previous}" value="#{bundle.Previous} #{candidatoController.pagination.pageSize}" rendered="#{candidatoController.pagination.hasPreviousPage}"/>&nbsp;
+					<h:commandLink action="#{candidatoController.next}" value="#{bundle.Next} #{candidatoController.pagination.pageSize}" rendered="#{candidatoController.pagination.hasNextPage}"/>&nbsp;
+					<h:dataTable value="#{candidatoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_idcandidato}"/>
+							</f:facet>
+							<h:outputText value="#{item.idcandidato}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_nombres}"/>
+							</f:facet>
+							<h:outputText value="#{item.nombres}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_apellidos}"/>
+							</f:facet>
+							<h:outputText value="#{item.apellidos}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_fechadenacimiento}"/>
+							</f:facet>
+							<h:outputText value="#{item.fechadenacimiento}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_telefono}"/>
+							</f:facet>
+							<h:outputText value="#{item.telefono}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_dui}"/>
+							</f:facet>
+							<h:outputText value="#{item.dui}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_nit}"/>
+							</f:facet>
+							<h:outputText value="#{item.nit}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_direccion}"/>
+							</f:facet>
+							<h:outputText value="#{item.direccion}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_estadocivilIdestadocivil}"/>
+							</f:facet>
+							<h:outputText value="#{item.estadocivilIdestadocivil}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="#{bundle.ListCandidatoTitle_municipioIdmunicipio}"/>
+							</f:facet>
+							<h:outputText value="#{item.municipioIdmunicipio}"/>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="&nbsp;"/>
+							</f:facet>
+							<h:commandLink action="#{candidatoController.prepareView}" value="#{bundle.ListCandidatoViewLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{candidatoController.prepareEdit}" value="#{bundle.ListCandidatoEditLink}"/>
+							<h:outputText value=" "/>
+							<h:commandLink action="#{candidatoController.destroy}" value="#{bundle.ListCandidatoDestroyLink}"/>
+						</h:column>
+					</h:dataTable>
+				</h:panelGroup>
+				<br />
+				<h:commandLink action="#{candidatoController.prepareCreate}" value="#{bundle.ListCandidatoCreateLink}"/>
+				<br />
+				<br />
+				<h:link outcome="/index" value="#{bundle.ListCandidatoIndexLink}"/>
+			</h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDescuentosleyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDescuentosleyLabel_idDescuento}"/>
+                    <h:outputText value="#{descuentosleyController.selected.idDescuento}" title="#{bundle.ViewDescuentosleyTitle_idDescuento}"/>
+                    <h:outputText value="#{bundle.ViewDescuentosleyLabel_nombre}"/>
+                    <h:outputText value="#{descuentosleyController.selected.nombre}" title="#{bundle.ViewDescuentosleyTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewDescuentosleyLabel_porcentaje}"/>
+                    <h:outputText value="#{descuentosleyController.selected.porcentaje}" title="#{bundle.ViewDescuentosleyTitle_porcentaje}"/>
+                    <h:outputText value="#{bundle.ViewDescuentosleyLabel_planillaIdplanilla}"/>
+                    <h:outputText value="#{descuentosleyController.selected.planillaIdplanilla}" title="#{bundle.ViewDescuentosleyTitle_planillaIdplanilla}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{descuentosleyController.destroyAndView}" value="#{bundle.ViewDescuentosleyDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDescuentosleyEditLink}"/>
+                <br />
+                <h:commandLink action="#{descuentosleyController.prepareCreate}" value="#{bundle.ViewDescuentosleyCreateLink}" />
+                <br />
+                <h:commandLink action="#{descuentosleyController.prepareList}" value="#{bundle.ViewDescuentosleyShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDescuentosleyIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

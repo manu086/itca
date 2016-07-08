@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipodescuentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipodescuentoLabel_idtipodescuento}"/>
+                    <h:outputText value="#{tipodescuentoController.selected.idtipodescuento}" title="#{bundle.ViewTipodescuentoTitle_idtipodescuento}"/>
+                    <h:outputText value="#{bundle.ViewTipodescuentoLabel_nombre}"/>
+                    <h:outputText value="#{tipodescuentoController.selected.nombre}" title="#{bundle.ViewTipodescuentoTitle_nombre}"/>
+                    <h:outputText value="#{bundle.ViewTipodescuentoLabel_observacion}"/>
+                    <h:outputText value="#{tipodescuentoController.selected.observacion}" title="#{bundle.ViewTipodescuentoTitle_observacion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipodescuentoController.destroyAndView}" value="#{bundle.ViewTipodescuentoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipodescuentoEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipodescuentoController.prepareCreate}" value="#{bundle.ViewTipodescuentoCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipodescuentoController.prepareList}" value="#{bundle.ViewTipodescuentoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipodescuentoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

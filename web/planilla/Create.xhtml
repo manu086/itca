@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePlanillaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_idplanilla}" for="idplanilla" />
+                    <h:inputText id="idplanilla" value="#{planillaController.selected.idplanilla}" title="#{bundle.CreatePlanillaTitle_idplanilla}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_idplanilla}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_afp}" for="afp" />
+                    <h:inputText id="afp" value="#{planillaController.selected.afp}" title="#{bundle.CreatePlanillaTitle_afp}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_afp}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_isss}" for="isss" />
+                    <h:inputText id="isss" value="#{planillaController.selected.isss}" title="#{bundle.CreatePlanillaTitle_isss}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_isss}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_sueldo}" for="sueldo" />
+                    <h:inputText id="sueldo" value="#{planillaController.selected.sueldo}" title="#{bundle.CreatePlanillaTitle_sueldo}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_sueldo}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_renta}" for="renta" />
+                    <h:inputText id="renta" value="#{planillaController.selected.renta}" title="#{bundle.CreatePlanillaTitle_renta}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_renta}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_vacacion}" for="vacacion" />
+                    <h:inputText id="vacacion" value="#{planillaController.selected.vacacion}" title="#{bundle.CreatePlanillaTitle_vacacion}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_vacacion}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_descuentos}" for="descuentos" />
+                    <h:inputText id="descuentos" value="#{planillaController.selected.descuentos}" title="#{bundle.CreatePlanillaTitle_descuentos}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_descuentos}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_horasextra}" for="horasextra" />
+                    <h:inputText id="horasextra" value="#{planillaController.selected.horasextra}" title="#{bundle.CreatePlanillaTitle_horasextra}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_horasextra}"/>
+                    <h:outputLabel value="#{bundle.CreatePlanillaLabel_empleadoIdempleado}" for="empleadoIdempleado" />
+                    <h:selectOneMenu id="empleadoIdempleado" value="#{planillaController.selected.empleadoIdempleado}" title="#{bundle.CreatePlanillaTitle_empleadoIdempleado}" required="true" requiredMessage="#{bundle.CreatePlanillaRequiredMessage_empleadoIdempleado}">
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{planillaController.create}" value="#{bundle.CreatePlanillaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{planillaController.prepareList}" value="#{bundle.CreatePlanillaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePlanillaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

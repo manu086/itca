@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRentaLabel_idrenta}"/>
+                    <h:outputText value="#{rentaController.selected.idrenta}" title="#{bundle.ViewRentaTitle_idrenta}"/>
+                    <h:outputText value="#{bundle.ViewRentaLabel_desde}"/>
+                    <h:outputText value="#{rentaController.selected.desde}" title="#{bundle.ViewRentaTitle_desde}"/>
+                    <h:outputText value="#{bundle.ViewRentaLabel_hasta}"/>
+                    <h:outputText value="#{rentaController.selected.hasta}" title="#{bundle.ViewRentaTitle_hasta}"/>
+                    <h:outputText value="#{bundle.ViewRentaLabel_comentario}"/>
+                    <h:outputText value="#{rentaController.selected.comentario}" title="#{bundle.ViewRentaTitle_comentario}"/>
+                    <h:outputText value="#{bundle.ViewRentaLabel_porcentaje}"/>
+                    <h:outputText value="#{rentaController.selected.porcentaje}" title="#{bundle.ViewRentaTitle_porcentaje}"/>
+                    <h:outputText value="#{bundle.ViewRentaLabel_tiporentaIdtiporenta}"/>
+                    <h:outputText value="#{rentaController.selected.tiporentaIdtiporenta}" title="#{bundle.ViewRentaTitle_tiporentaIdtiporenta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rentaController.destroyAndView}" value="#{bundle.ViewRentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{rentaController.prepareCreate}" value="#{bundle.ViewRentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{rentaController.prepareList}" value="#{bundle.ViewRentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRentaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

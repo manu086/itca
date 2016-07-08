@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEstadocivilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEstadocivilLabel_idestadocivil}" for="idestadocivil" />
+                    <h:inputText id="idestadocivil" value="#{estadocivilController.selected.idestadocivil}" title="#{bundle.EditEstadocivilTitle_idestadocivil}" required="true" requiredMessage="#{bundle.EditEstadocivilRequiredMessage_idestadocivil}"/>
+                    <h:outputLabel value="#{bundle.EditEstadocivilLabel_nombreestadocivil}" for="nombreestadocivil" />
+                    <h:inputText id="nombreestadocivil" value="#{estadocivilController.selected.nombreestadocivil}" title="#{bundle.EditEstadocivilTitle_nombreestadocivil}" required="true" requiredMessage="#{bundle.EditEstadocivilRequiredMessage_nombreestadocivil}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{estadocivilController.update}" value="#{bundle.EditEstadocivilSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEstadocivilViewLink}"/>
+                <br />
+                <h:commandLink action="#{estadocivilController.prepareList}" value="#{bundle.EditEstadocivilShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEstadocivilIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHoraextraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHoraextraLabel_idhoraextra}" for="idhoraextra" />
+                    <h:inputText id="idhoraextra" value="#{horaextraController.selected.idhoraextra}" title="#{bundle.EditHoraextraTitle_idhoraextra}" required="true" requiredMessage="#{bundle.EditHoraextraRequiredMessage_idhoraextra}"/>
+                    <h:outputLabel value="#{bundle.EditHoraextraLabel_inicio}" for="inicio" />
+                    <h:inputText id="inicio" value="#{horaextraController.selected.inicio}" title="#{bundle.EditHoraextraTitle_inicio}" required="true" requiredMessage="#{bundle.EditHoraextraRequiredMessage_inicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditHoraextraLabel_fin}" for="fin" />
+                    <h:inputText id="fin" value="#{horaextraController.selected.fin}" title="#{bundle.EditHoraextraTitle_fin}" required="true" requiredMessage="#{bundle.EditHoraextraRequiredMessage_fin}"/>
+                    <h:outputLabel value="#{bundle.EditHoraextraLabel_empleadoIdempleado}" for="empleadoIdempleado" />
+                    <h:selectOneMenu id="empleadoIdempleado" value="#{horaextraController.selected.empleadoIdempleado}" title="#{bundle.EditHoraextraTitle_empleadoIdempleado}" required="true" requiredMessage="#{bundle.EditHoraextraRequiredMessage_empleadoIdempleado}">
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{horaextraController.update}" value="#{bundle.EditHoraextraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHoraextraViewLink}"/>
+                <br />
+                <h:commandLink action="#{horaextraController.prepareList}" value="#{bundle.EditHoraextraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHoraextraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

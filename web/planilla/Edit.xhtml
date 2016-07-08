@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlanillaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_idplanilla}" for="idplanilla" />
+                    <h:inputText id="idplanilla" value="#{planillaController.selected.idplanilla}" title="#{bundle.EditPlanillaTitle_idplanilla}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_idplanilla}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_afp}" for="afp" />
+                    <h:inputText id="afp" value="#{planillaController.selected.afp}" title="#{bundle.EditPlanillaTitle_afp}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_afp}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_isss}" for="isss" />
+                    <h:inputText id="isss" value="#{planillaController.selected.isss}" title="#{bundle.EditPlanillaTitle_isss}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_isss}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_sueldo}" for="sueldo" />
+                    <h:inputText id="sueldo" value="#{planillaController.selected.sueldo}" title="#{bundle.EditPlanillaTitle_sueldo}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_sueldo}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_renta}" for="renta" />
+                    <h:inputText id="renta" value="#{planillaController.selected.renta}" title="#{bundle.EditPlanillaTitle_renta}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_renta}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_vacacion}" for="vacacion" />
+                    <h:inputText id="vacacion" value="#{planillaController.selected.vacacion}" title="#{bundle.EditPlanillaTitle_vacacion}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_vacacion}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_descuentos}" for="descuentos" />
+                    <h:inputText id="descuentos" value="#{planillaController.selected.descuentos}" title="#{bundle.EditPlanillaTitle_descuentos}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_descuentos}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_horasextra}" for="horasextra" />
+                    <h:inputText id="horasextra" value="#{planillaController.selected.horasextra}" title="#{bundle.EditPlanillaTitle_horasextra}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_horasextra}"/>
+                    <h:outputLabel value="#{bundle.EditPlanillaLabel_empleadoIdempleado}" for="empleadoIdempleado" />
+                    <h:selectOneMenu id="empleadoIdempleado" value="#{planillaController.selected.empleadoIdempleado}" title="#{bundle.EditPlanillaTitle_empleadoIdempleado}" required="true" requiredMessage="#{bundle.EditPlanillaRequiredMessage_empleadoIdempleado}">
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{planillaController.update}" value="#{bundle.EditPlanillaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlanillaViewLink}"/>
+                <br />
+                <h:commandLink action="#{planillaController.prepareList}" value="#{bundle.EditPlanillaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlanillaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

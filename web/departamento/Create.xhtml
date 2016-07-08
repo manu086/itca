@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDepartamentoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDepartamentoLabel_iddepartamento}" for="iddepartamento" />
+                    <h:inputText id="iddepartamento" value="#{departamentoController.selected.iddepartamento}" title="#{bundle.CreateDepartamentoTitle_iddepartamento}" required="true" requiredMessage="#{bundle.CreateDepartamentoRequiredMessage_iddepartamento}"/>
+                    <h:outputLabel value="#{bundle.CreateDepartamentoLabel_nombredepartamento}" for="nombredepartamento" />
+                    <h:inputText id="nombredepartamento" value="#{departamentoController.selected.nombredepartamento}" title="#{bundle.CreateDepartamentoTitle_nombredepartamento}" required="true" requiredMessage="#{bundle.CreateDepartamentoRequiredMessage_nombredepartamento}"/>
+                    <h:outputLabel value="#{bundle.CreateDepartamentoLabel_paisIdpais}" for="paisIdpais" />
+                    <h:selectOneMenu id="paisIdpais" value="#{departamentoController.selected.paisIdpais}" title="#{bundle.CreateDepartamentoTitle_paisIdpais}" required="true" requiredMessage="#{bundle.CreateDepartamentoRequiredMessage_paisIdpais}">
+                        <f:selectItems value="#{paisController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{departamentoController.create}" value="#{bundle.CreateDepartamentoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{departamentoController.prepareList}" value="#{bundle.CreateDepartamentoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDepartamentoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

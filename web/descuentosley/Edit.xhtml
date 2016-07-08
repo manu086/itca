@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDescuentosleyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDescuentosleyLabel_idDescuento}" for="idDescuento" />
+                    <h:inputText id="idDescuento" value="#{descuentosleyController.selected.idDescuento}" title="#{bundle.EditDescuentosleyTitle_idDescuento}" required="true" requiredMessage="#{bundle.EditDescuentosleyRequiredMessage_idDescuento}"/>
+                    <h:outputLabel value="#{bundle.EditDescuentosleyLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{descuentosleyController.selected.nombre}" title="#{bundle.EditDescuentosleyTitle_nombre}" required="true" requiredMessage="#{bundle.EditDescuentosleyRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditDescuentosleyLabel_porcentaje}" for="porcentaje" />
+                    <h:inputText id="porcentaje" value="#{descuentosleyController.selected.porcentaje}" title="#{bundle.EditDescuentosleyTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditDescuentosleyRequiredMessage_porcentaje}"/>
+                    <h:outputLabel value="#{bundle.EditDescuentosleyLabel_planillaIdplanilla}" for="planillaIdplanilla" />
+                    <h:selectOneMenu id="planillaIdplanilla" value="#{descuentosleyController.selected.planillaIdplanilla}" title="#{bundle.EditDescuentosleyTitle_planillaIdplanilla}" required="true" requiredMessage="#{bundle.EditDescuentosleyRequiredMessage_planillaIdplanilla}">
+                        <f:selectItems value="#{planillaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{descuentosleyController.update}" value="#{bundle.EditDescuentosleySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDescuentosleyViewLink}"/>
+                <br />
+                <h:commandLink action="#{descuentosleyController.prepareList}" value="#{bundle.EditDescuentosleyShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDescuentosleyIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

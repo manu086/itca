@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCandidatoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_idcandidato}" for="idcandidato" />
+                    <h:inputText id="idcandidato" value="#{candidatoController.selected.idcandidato}" title="#{bundle.EditCandidatoTitle_idcandidato}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_idcandidato}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_nombres}" for="nombres" />
+                    <h:inputText id="nombres" value="#{candidatoController.selected.nombres}" title="#{bundle.EditCandidatoTitle_nombres}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_nombres}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_apellidos}" for="apellidos" />
+                    <h:inputText id="apellidos" value="#{candidatoController.selected.apellidos}" title="#{bundle.EditCandidatoTitle_apellidos}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_apellidos}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_fechadenacimiento}" for="fechadenacimiento" />
+                    <h:inputText id="fechadenacimiento" value="#{candidatoController.selected.fechadenacimiento}" title="#{bundle.EditCandidatoTitle_fechadenacimiento}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_fechadenacimiento}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{candidatoController.selected.telefono}" title="#{bundle.EditCandidatoTitle_telefono}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_dui}" for="dui" />
+                    <h:inputText id="dui" value="#{candidatoController.selected.dui}" title="#{bundle.EditCandidatoTitle_dui}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_dui}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_nit}" for="nit" />
+                    <h:inputText id="nit" value="#{candidatoController.selected.nit}" title="#{bundle.EditCandidatoTitle_nit}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_nit}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{candidatoController.selected.direccion}" title="#{bundle.EditCandidatoTitle_direccion}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_estadocivilIdestadocivil}" for="estadocivilIdestadocivil" />
+                    <h:selectOneMenu id="estadocivilIdestadocivil" value="#{candidatoController.selected.estadocivilIdestadocivil}" title="#{bundle.EditCandidatoTitle_estadocivilIdestadocivil}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_estadocivilIdestadocivil}">
+                        <f:selectItems value="#{estadocivilController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCandidatoLabel_municipioIdmunicipio}" for="municipioIdmunicipio" />
+                    <h:selectOneMenu id="municipioIdmunicipio" value="#{candidatoController.selected.municipioIdmunicipio}" title="#{bundle.EditCandidatoTitle_municipioIdmunicipio}" required="true" requiredMessage="#{bundle.EditCandidatoRequiredMessage_municipioIdmunicipio}">
+                        <f:selectItems value="#{municipioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{candidatoController.update}" value="#{bundle.EditCandidatoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCandidatoViewLink}"/>
+                <br />
+                <h:commandLink action="#{candidatoController.prepareList}" value="#{bundle.EditCandidatoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCandidatoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

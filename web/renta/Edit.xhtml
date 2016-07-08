@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRentaLabel_idrenta}" for="idrenta" />
+                    <h:inputText id="idrenta" value="#{rentaController.selected.idrenta}" title="#{bundle.EditRentaTitle_idrenta}" required="true" requiredMessage="#{bundle.EditRentaRequiredMessage_idrenta}"/>
+                    <h:outputLabel value="#{bundle.EditRentaLabel_desde}" for="desde" />
+                    <h:inputText id="desde" value="#{rentaController.selected.desde}" title="#{bundle.EditRentaTitle_desde}" required="true" requiredMessage="#{bundle.EditRentaRequiredMessage_desde}"/>
+                    <h:outputLabel value="#{bundle.EditRentaLabel_hasta}" for="hasta" />
+                    <h:inputText id="hasta" value="#{rentaController.selected.hasta}" title="#{bundle.EditRentaTitle_hasta}" required="true" requiredMessage="#{bundle.EditRentaRequiredMessage_hasta}"/>
+                    <h:outputLabel value="#{bundle.EditRentaLabel_comentario}" for="comentario" />
+                    <h:inputText id="comentario" value="#{rentaController.selected.comentario}" title="#{bundle.EditRentaTitle_comentario}" />
+                    <h:outputLabel value="#{bundle.EditRentaLabel_porcentaje}" for="porcentaje" />
+                    <h:inputText id="porcentaje" value="#{rentaController.selected.porcentaje}" title="#{bundle.EditRentaTitle_porcentaje}" required="true" requiredMessage="#{bundle.EditRentaRequiredMessage_porcentaje}"/>
+                    <h:outputLabel value="#{bundle.EditRentaLabel_tiporentaIdtiporenta}" for="tiporentaIdtiporenta" />
+                    <h:selectOneMenu id="tiporentaIdtiporenta" value="#{rentaController.selected.tiporentaIdtiporenta}" title="#{bundle.EditRentaTitle_tiporentaIdtiporenta}" required="true" requiredMessage="#{bundle.EditRentaRequiredMessage_tiporentaIdtiporenta}">
+                        <f:selectItems value="#{tiporentaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{rentaController.update}" value="#{bundle.EditRentaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRentaViewLink}"/>
+                <br />
+                <h:commandLink action="#{rentaController.prepareList}" value="#{bundle.EditRentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRentaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
