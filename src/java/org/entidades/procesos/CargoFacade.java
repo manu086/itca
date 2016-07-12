@@ -5,9 +5,12 @@
  */
 package org.entidades.procesos;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.entidades.Cargo;
 
 /**
@@ -27,6 +30,12 @@ public class CargoFacade extends AbstractFacade<Cargo> {
 
 	public CargoFacade() {
 		super(Cargo.class);
+	}
+	
+	public List<Cargo> listarTodos(){
+	Query q = em.createNamedQuery("Cargo.findAll");
+	List c =  q.getResultList();
+	return c;
 	}
 	
 }

@@ -4,15 +4,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:p="http://primefaces.org/ui">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
+	  
     <body>
+		<h:form>
         <p:commandButton value="Reporte"
-						 action="#{reporte.doGet()}"/>
+						 action="#{reportesController.verReporte}"/>
 		
-		
+	  </h:form>
     </body>
 </html>

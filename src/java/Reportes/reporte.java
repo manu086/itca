@@ -116,7 +116,7 @@ public class reporte extends HttpServlet {
             ResultSet rs = st.executeQuery("Select * from cargo");
             jrds = new JRResultSetDataSource(rs);
             //Forma 2 de cargar archivos
-            File reportFile = new File("C:\\Users\\Manuel\\Documents\\NetBeansProjects\\itca\\Reportes\\src\\reportes\\Cargos.jasper");
+            File reportFile = new File("/reportes/Cargos.jasper");
             InputStream is = new FileInputStream(reportFile);
             HashMap m =new HashMap();
             m.put("parameter1", "titulo x");
