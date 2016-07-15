@@ -32,10 +32,9 @@ public class CargoFacade extends AbstractFacade<Cargo> {
 		super(Cargo.class);
 	}
 	
-	public List<Cargo> listarTodos(){
-	Query q = em.createNamedQuery("Cargo.findAll");
-	List c =  q.getResultList();
-	return c;
+	//public ArrayList<Cargo> listarTodos(){
+	//Query q = em.createNamedQuery("Cargo.findAll");
+	//List c =  q.getResultList();
+	//return (ArrayList<Cargo>) c;
 	}
 	
-}

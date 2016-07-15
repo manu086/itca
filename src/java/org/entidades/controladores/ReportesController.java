@@ -5,6 +5,7 @@
  */
 package org.entidades.controladores;
 
+import java.io.IOException;
 import java.io.InputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -16,8 +17,13 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.entidades.Cargo;
 import org.entidades.procesos.CargoFacade;
 
@@ -30,37 +36,44 @@ import org.entidades.procesos.CargoFacade;
 public class ReportesController implements Serializable {
 
 	@EJB
-	private CargoFacade cargoFacade;
+	 CargoFacade em;
+	private List<Cargo> lista;
+	JasperPrint jasperPrint;
 
-	/**
-	 * Creates a new instance of ReportesController
-	 */
-	public String verReporte() {
-		try {
+	public List<Cargo> getLista() {
+		lista = em.findAll();
+		return lista;
+	}
 
-			HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance()
-.getExternalContext().getResponse();
-InputStream fileReport = FacesContext.getCurrentInstance()
-.getExternalContext().getResourceAsStream("/Reportes/Cargos.jasper");
-HashMap h = new HashMap(); //Parametros
-h.put("parameter1", "valorParametro"); //solo necesario si hay parametros en el reporte
-JRBeanArrayDataSource ds = getOrigenDatosReporte();
-byte[] bytesReportes = JasperRunManager
-.runReportToPdf(fileReport, h, ds);
-ServletOutputStream out = res.getOutputStream();
-out.write(bytesReportes, 0, bytesReportes.length);
-out.flush();
-out.close();
-} catch (Exception ex) {
-}
-return "";
+	public void setLista(List<Cargo> lista) {
+		this.lista = lista;
+	}
+	
+	
+public void init() throws JRException {
+		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource (lista);
+		String rerportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("Cargo.jasper");
+		jasperPrint = JasperFillManager.fillReport(rerportPath, new HashMap(), beanCollectionDataSource);
+		
 }
 
-private JRBeanArrayDataSource getOrigenDatosReporte() {
-	List lista = cargoFacade.listarTodos();
-Cargo[] listacargo = (Cargo[]) lista.toArray();
-JRBeanArrayDataSource ds = new JRBeanArrayDataSource(listacargo);
-return ds;
-} 
-} 	
+public void pdf() throws JRException, IOException{
+	init();
+	HttpServletResponse HttpServletResponse= (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+	HttpServletResponse.addHeader("Content-disposition", "attachment:filename=report.pdf");
+	ServletOutputStream servletOutputStream = HttpServletResponse.getOutputStream();
+	JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
+	FacesContext.getCurrentInstance().responseComplete();
+}	
+
+}	
+	
+
+	
+	
+	
+	
+	
+	
+	
 
